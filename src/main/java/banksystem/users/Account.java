@@ -13,4 +13,11 @@ public class Account {
       this.email = email;
       
    }
+   public String checkUserName(){
+      return userName;
+   }
+   public String checkPassword(){
+      return password;
+   }
+
 }

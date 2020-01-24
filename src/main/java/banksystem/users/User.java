@@ -1,5 +1,10 @@
 package banksystem.users;
 
+import java.util.ArrayList;
+
+import banksystem.App;
+
+
 public class User extends Account{
     String role;
     String password;
@@ -34,8 +39,15 @@ public class User extends Account{
      return role;
    }
    public String removeUser(User user){
-
-     return "";
+     ArrayList<Account> list =  App.getList();
+    for(int i = 0; i < list.size(); i++){
+      if(list.get(i).equals(user)){
+        list.remove(i);
+        break;
+      }
+    }
+    App.setList(list);
+     return "123";
    }
    public int viewAccountBalance(User user) {
 
