@@ -13,10 +13,15 @@ public class User extends Account{
     String firstName;
     String lastName;
     int salary;
+    long money;
+    String roleRequest;
+    String salaryRequest;
+    String roleRequestResponse;
+    String salaryRequestResponse;
     
    //Constructor
-   public User(String firstName, String lastName, String role, String password, String userName, String email, int salary){
-        super(role, password, userName, email);
+   public User(String firstName, String lastName, String role, String userName, String password, String email, int salary, long money, String roleRequest, String salaryRequest, String roleRequestResponse, String salaryRequestResponse){
+        super(role, userName, password, email);
         this.role = role;
         this.password = password;
         this.userName = userName;
@@ -24,6 +29,11 @@ public class User extends Account{
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
+        this.money = money;
+        this.roleRequest = roleRequest;
+        this.salaryRequest = salaryRequest;
+        this.roleRequestResponse = roleRequestResponse;
+        this.salaryRequestResponse = salaryRequestResponse;
    }
 
    public String createRequest(String request){

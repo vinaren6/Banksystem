@@ -3,6 +3,7 @@ package banksystem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import banksystem.menu.AdminMenu;
 import banksystem.menu.UserMenu;
 import banksystem.users.Account;
 import banksystem.users.Admin;
@@ -19,10 +20,9 @@ public class App
     public static void main( String[] args )
     {
         
-
-        Admin admin = new Admin("Admin", "admin1", "admin1234", "admin@admin.admin");
-        User user = new User("Viktor", "Ruden", "worker", "123", "viktor", "Viktor@viktor.viktor", 10000);
-        User user1 = new User("Joshua", "Klein", "worker", "123", "Joshua", "joshua@joshua.joshua", 1000);
+        Admin admin = new Admin("admin1", "admin1234", "admin@admin.admin", "Admin");
+        User user = new User("Viktor", "Ruden", "Programmer", "viktor", "123", "viktor@viktor.viktor", 100000, 1000000, "", "" ,"" ,"");
+        User user1 = new User("Joshua", "Klein", "Janitor", "123", "Joshua", "joshua@joshua.joshua", 1000, 1000, "", "" ,"" ,"");
 
         list.add(admin);
         list.add(user);
@@ -39,7 +39,9 @@ public class App
             userMenu.menu(user2);
         }
         else {
-
+            Admin admin2 = (Admin) account;
+            AdminMenu adminMenu = new AdminMenu();
+            adminMenu.menu(admin2);
         }
 
         for(int i = 0; i < list.size(); i++){
@@ -61,6 +63,9 @@ public class App
         System.out.println("Password");
         String password = scanner.nextLine();
         for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).checkUserName() + " " + username);
+            System.out.println(list.get(i).checkPassword() + " " + password);
+
             if(list.get(i).checkUserName().equals(username) && list.get(i).checkPassword().equals(password)) {
                 account = list.get(i);
                 login = true;
