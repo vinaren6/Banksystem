@@ -12,7 +12,7 @@ public class AdminMenu {
         Boolean logout = false;
               
         while (logout == false) {
-            System.out.println("1. see users  2. Role  3. Remove  0. Logout");
+            System.out.println("1. see users  2. Make user  3. Give salary  0. Logout");
 			String menuChoise = scanner.nextLine();
 
             switch(menuChoise) 
@@ -42,12 +42,17 @@ public class AdminMenu {
 
             admin.createUser(firstName, lastName, role, password, userName, email, salary, money);
 
-                System.out.println(admin); 
+                ; 
                 break; 
             case "3": 
-                System.out.println(admin); 
-                logout = true;
+                admin.plannedSalary();
                 break; 
+
+            case "4":
+                System.out.println("Which user do you want to delete");
+                String removeUserName = scanner.nextLine();
+                admin.removeUser(removeUserName);
+                break;
             case "0":
                 logout = true;
                 break;

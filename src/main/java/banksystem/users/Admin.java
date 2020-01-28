@@ -25,15 +25,25 @@ public class Admin extends Account{
       for(int i = 0; i < list.size(); i++){
          if(list.get(i) instanceof User){
             User user = (User) list.get(i);
-            System.out.println("First name " + user.firstName + " last name " + user.lastName + " email " + user.email + " username " + user.userName + " password " + user.password + " role " + user.role + " salary " + user.salary);
+            System.out.println("First name: " + user.firstName + " - last name: " + user.lastName + " - email: " + user.email + " - username: " + user.userName + " - password: " + user.password + " - role: " + user.role + " - salary: " + user.salary + " - money: " + user.money);
          }
        }
       
       return "";
    }
 
-   public String removeUser(User user){
-
+   public String removeUser(String userName){
+      ArrayList<Account> list =  App.getList();
+      for(int i = 0; i < list.size(); i++){
+         if(list.get(i) instanceof User){
+            User user = (User) list.get(i);
+            if(user.userName.equals(userName)){
+               list.remove(i);
+               break;
+            }
+         }
+      }
+      App.setList(list);
       return "";
    }
 
@@ -57,7 +67,19 @@ public class Admin extends Account{
       return "";
    }
    public void plannedSalary(){
-      
+      ArrayList<Account> list =  App.getList();
+      ArrayList<Account> list2= new ArrayList<Account>();
+      for(int i = 0; i < list.size(); i++){
+         if(list.get(i) instanceof User){
+            User user = (User) list.get(i);
+            user.money = user.money + user.salary;
+            list2.add(user);
+         }
+         else{
+            list2.add(list.get(i));
+         }
+       }
+      App.setList(list2);
    }
 
     // Getters and setters
