@@ -12,7 +12,7 @@ public class AdminMenu {
         Boolean logout = false;
               
         while (logout == false) {
-            System.out.println("1. see users  2. Make user  3. Give salary  0. Logout");
+            System.out.println("1. see users  2. Make user  3. Pay salary  4. Delete user  5. Salary request  0. Logout");
 			String menuChoise = scanner.nextLine();
 
             switch(menuChoise) 
@@ -27,18 +27,52 @@ public class AdminMenu {
             String lastName = scanner.nextLine();           
             System.out.println("role");
             String role = scanner.nextLine();
+            boolean passwordLetter = false;
+            boolean passwordNumber = false;
+            String password = "";
+            while (!passwordLetter && !passwordNumber){
             System.out.println("password");
-            String password = scanner.nextLine();
+            password = scanner.nextLine();
+            if(password.matches(".*\\d.*")){
+                passwordLetter = true;
+            }
+            if(password.matches(".*[a-zA-Z].*")){
+                passwordNumber = true;
+            }
+            if(!passwordLetter || !passwordNumber){
+                System.out.print("Needs to contain number and letters");
+                passwordNumber = false;
+                passwordLetter = false;
+            }
+
+            }
+
             System.out.println("username");
             String userName = scanner.nextLine();
             System.out.println("email");
             String email = scanner.nextLine();
+            boolean parseIntSalary = false;
+            int salary = 0;
+            while (!parseIntSalary){
+                try{
             System.out.println("salary");
             String strSalary = scanner.nextLine();
-            int salary = Integer.parseInt(strSalary);
+            salary = Integer.parseInt(strSalary);
+            parseIntSalary = true;
+                }
+                catch(Exception e){}
+            }
+            boolean parseIntMoney = false;
+            int money = 0;
+                while (!parseIntMoney){
+                    try{
             System.out.println("money");
             String strMoney = scanner.nextLine();
-            int money = Integer.parseInt(strMoney);
+            money = Integer.parseInt(strMoney);
+            parseIntMoney = true;
+                    }
+                    catch(Exception e){}
+                }
 
             admin.createUser(firstName, lastName, role, password, userName, email, salary, money);
 
@@ -52,6 +86,10 @@ public class AdminMenu {
                 System.out.println("Which user do you want to delete");
                 String removeUserName = scanner.nextLine();
                 admin.removeUser(removeUserName);
+                break;
+            case "5":
+                System.out.println("Which user do you want to delete");
+                admin.seeUserRequestSalary();
                 break;
             case "0":
                 logout = true;

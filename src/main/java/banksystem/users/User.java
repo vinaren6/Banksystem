@@ -15,12 +15,11 @@ public class User extends Account{
     int salary;
     long money;
     String roleRequest;
-    String salaryRequest;
-    String roleRequestResponse;
-    String salaryRequestResponse;
+    int salaryRequest;
+  
     
    //Constructor
-   public User(String firstName, String lastName, String role, String userName, String password, String email, int salary, long money, String roleRequest, String salaryRequest, String roleRequestResponse, String salaryRequestResponse){
+   public User(String firstName, String lastName, String role, String userName, String password, String email, int salary, long money){
         super(role, userName, password, email);
         this.role = role;
         this.password = password;
@@ -30,16 +29,19 @@ public class User extends Account{
         this.lastName = lastName;
         this.salary = salary;
         this.money = money;
-        this.roleRequest = roleRequest;
-        this.salaryRequest = salaryRequest;
-        this.roleRequestResponse = roleRequestResponse;
-        this.salaryRequestResponse = salaryRequestResponse;
+        this.roleRequest = "";
+        this.salaryRequest = salary;
+        
    }
 
-   public String createRequest(String request){
-
-     return "";
+   public int createRequestSalary(int request){
+      salaryRequest = request;
+     return salaryRequest;
    }
+   public String createRequestRole(String request){
+      roleRequest = request;
+    return roleRequest;
+  }
    public int viewSalary(){
 
      return salary;
