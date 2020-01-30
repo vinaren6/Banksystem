@@ -27,6 +27,8 @@ public class AdminMenu {
             String lastName = scanner.nextLine();           
             System.out.println("role");
             String role = scanner.nextLine();
+            System.out.println("username");
+            String userName = scanner.nextLine();
             boolean passwordLetter = false;
             boolean passwordNumber = false;
             String password = "";
@@ -47,8 +49,7 @@ public class AdminMenu {
 
             }
 
-            System.out.println("username");
-            String userName = scanner.nextLine();
+            
             System.out.println("email");
             String email = scanner.nextLine();
             boolean parseIntSalary = false;
@@ -74,7 +75,7 @@ public class AdminMenu {
                     catch(Exception e){}
                 }
 
-            admin.createUser(firstName, lastName, role, password, userName, email, salary, money);
+            admin.createUser(userName, password, email, role, firstName, lastName, salary, money);
 
                 ; 
                 break; 

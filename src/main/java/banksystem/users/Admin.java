@@ -15,7 +15,7 @@ public class Admin extends Account{
         
    //Constructor
    public Admin( String userName, String password, String email, String role){
-      super(role, userName, password, email);
+      super(userName, password, email, role);
       this.role = role;
       this.userName = userName;
       this.password = password;
@@ -153,9 +153,9 @@ public class Admin extends Account{
 
       return "";
    }
-   public String createUser(String firstName, String lastName, String role, String password, String userName, String email, int salary, long money){
+   public String createUser(String userName, String password, String email, String role, String firstName, String lastName, int salary, int money){
       ArrayList<Account> list =  App.getList();
-      User user = new User(firstName, lastName, role, password, userName, email, salary, money);
+      User user = new User(userName, password, email, role, firstName, lastName, salary, money);
       list.add(user);
       App.setList(list);
       return "";

@@ -19,8 +19,8 @@ public class User extends Account{
   
     
    //Constructor
-   public User(String firstName, String lastName, String role, String userName, String password, String email, int salary, long money){
-        super(role, userName, password, email);
+   public User(String userName, String password, String email, String role, String firstName, String lastName, int salary, long money){
+        super(userName, password, email, role);
         this.role = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
         this.password = password;
         this.userName = userName;

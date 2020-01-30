@@ -21,8 +21,8 @@ public class App
     {
         boolean exit = false;
         Admin admin = new Admin("admin1", "admin1234", "admin@admin.admin", "Admin");
-        User user = new User("Viktor", "Ruden", "Programmer", "viktor", "123", "viktor@viktor.viktor", 100000, 1000000);
-        User user1 = new User("Joshua", "Klein", "Janitor", "Joshua", "123",  "joshua@joshua.joshua", 1000, 1000);
+        User user = new User("viktor", "abc123", "viktor@mail.com", "programmer", "viktor", "Rüdén", 1500, 15000);
+        User user1 = new User("joshua", "abc123", "josh@mail.com", "janitor", "joshua",  "klein", 1000, 1000);
 
         list.add(admin);
         list.add(user);
@@ -37,17 +37,33 @@ public class App
         switch(menuChoise) 
     {   
         case "1": 
-        Account account = login();
+        boolean login = false;
+        while (login == false) {
+        System.out.println("Login");
+
+        System.out.println("Username");
+        String username = scanner.nextLine();
+        System.out.println("Password");
+        String password = scanner.nextLine();
+
+        int userPosition = loginGetListPosition(username, password);
+        if(userPosition != -1){
+        Account account = loginGetAccountFromList(userPosition);
         if(account instanceof User){
             User user2 = (User) account;
             UserMenu userMenu = new UserMenu();
             userMenu.menu(user2);
+            login = true;
         }
         else {
             Admin admin2 = (Admin) account;
             AdminMenu adminMenu = new AdminMenu();
             adminMenu.menu(admin2);
+            login = true;
         }
+    }
+        }
+        
             break;
             case "0": 
             System.out.println("Goodbye!");
@@ -59,31 +75,27 @@ public class App
     }
 }
     }
-    
-    public static Account login(){
-        Boolean login = false;
-        Account account = list.get(0);
-        while (login == false) {
-        
-        System.out.println("Login");
 
-        System.out.println("Username");
-        String username = scanner.nextLine();
-        System.out.println("Password");
-        String password = scanner.nextLine();
+    public static Account loginGetAccountFromList(int position){
+        Account account = list.get(position);
+        return account;
+    }
+    
+    public static int loginGetListPosition(String username, String password){
+        int userPosition = -1;
         for(int i = 0; i < list.size(); i++) {
             
 
             if(list.get(i).checkUserName().equals(username) && list.get(i).checkPassword().equals(password)) {
-                account = list.get(i);
-                login = true;
+                userPosition = i;
+                break;
             }
         }
-        if(login == false){
+        if(userPosition == -1){
             System.out.println("Username or password incorrect");
         }
-        }
-        return  account;
+        
+        return  userPosition;
     }
 
     public static void setList(ArrayList<Account> setArrayList){

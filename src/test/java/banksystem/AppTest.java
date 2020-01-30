@@ -18,7 +18,7 @@ public class AppTest
     @Test
     public void createAdmin()
     {
-        Admin admin = new Admin("Admin", "admin1", "admin1234", "admin@admin.admin");
+        Admin admin = new Admin("admin1", "admin1234", "admin@admin.admin", "Admin");
         assertEquals("admin1", admin.userName);
     }
     // @Test
@@ -30,7 +30,7 @@ public class AppTest
     @Test
     public void checkUserSalary()
     {
-        User user = new User("Joshua", "Klein", "Worker", "12345","YEEET", "user@user.user", 20000, 1000);
+        User user = new User("joshua", "abc", "user@user.user", "Worker", "joshua", "Klein", 20000, 1000);
         int salary = user.viewSalary();
         assertEquals(20000, salary);
     }
@@ -38,7 +38,7 @@ public class AppTest
     @Test
     public void checkUserRole()
     {
-        User user = new User("Joshua", "Klein", "Worker", "12345","YEEET", "user@user.user", 20000, 1000);
+        User user = new User("joshua", "abc", "user@user.user", "Worker", "joshua", "Klein", 20000, 1000);
         String role = user.viewRole();
         assertEquals("Worker", role);
     }
