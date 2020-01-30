@@ -21,17 +21,16 @@ public class User extends Account{
    //Constructor
    public User(String firstName, String lastName, String role, String userName, String password, String email, int salary, long money){
         super(role, userName, password, email);
-        this.role = role;
+        this.role = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
         this.password = password;
         this.userName = userName;
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
+        this.lastName = lastName.substring(0, 1).toUpperCase() + lastName.substring(1).toLowerCase();
         this.salary = salary;
         this.money = money;
-        this.roleRequest = "";
+        this.roleRequest = role.substring(0, 1).toUpperCase() + role.substring(1).toLowerCase();
         this.salaryRequest = salary;
-        
    }
 
    public int createRequestSalary(int request){
@@ -39,7 +38,7 @@ public class User extends Account{
      return salaryRequest;
    }
    public String createRequestRole(String request){
-      roleRequest = request;
+      roleRequest = request.substring(0, 1).toUpperCase() + request.substring(1).toLowerCase();;
     return roleRequest;
   }
    public int viewSalary(){

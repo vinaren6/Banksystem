@@ -22,7 +22,7 @@ public class App
         boolean exit = false;
         Admin admin = new Admin("admin1", "admin1234", "admin@admin.admin", "Admin");
         User user = new User("Viktor", "Ruden", "Programmer", "viktor", "123", "viktor@viktor.viktor", 100000, 1000000);
-        User user1 = new User("Joshua", "Klein", "Janitor", "123", "Joshua", "joshua@joshua.joshua", 1000, 1000);
+        User user1 = new User("Joshua", "Klein", "Janitor", "Joshua", "123",  "joshua@joshua.joshua", 1000, 1000);
 
         list.add(admin);
         list.add(user);

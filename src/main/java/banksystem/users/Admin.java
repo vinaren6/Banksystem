@@ -1,11 +1,13 @@
 package banksystem.users;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import banksystem.App;
 
 public class Admin extends Account{
-    
+   private Scanner scanner = new Scanner(System.in);
+
    public String role;
    public String password;
    public String userName;
@@ -49,18 +51,102 @@ public class Admin extends Account{
 
    public String seeUserRequestSalary(){
       ArrayList<Account> list =  App.getList();
+     
+
+      boolean exit = false;
+
       for(int i = 0; i < list.size(); i++){
+         
          if(list.get(i) instanceof User){
             User user = (User) list.get(i);
             if(user.salary != user.salaryRequest){
+               boolean exitWhile = false;
+
             System.out.println("Username: " + user.userName + " current salary: " + user.salary + " requested salary: " + user.salaryRequest);
+            System.out.println("1. Accept  2. Decline  3. Exit");
+
+            while(exitWhile == false){
+               String decision = scanner.nextLine();
+            switch(decision) 
+            {   
+                case "1": 
+                User userWithNewsalary = (User) list.get(i);
+                userWithNewsalary.salary = userWithNewsalary.salaryRequest;
+                list.set(i, userWithNewsalary);
+                exitWhile = true;
+                break;
+                case "2": 
+                User userWithSamesalary = (User) list.get(i);
+                userWithSamesalary.salaryRequest = userWithSamesalary.salary;
+                list.set(i, userWithSamesalary);
+                exitWhile = true;
+                break;
+                case "3":
+                exit = true;
+                exitWhile = true;
+                break;
+               }
+         }
+         if(exit){
+            break;
          }
       }
+      
       }
-      return "";
+      App.setList(list);
+      
    }
-   public String changeUserRole(User user){
+   return "";
+}
+   public String changeUserRole(){
+      ArrayList<Account> list =  App.getList();
+     
 
+      boolean exit = false;
+
+      for(int i = 0; i < list.size(); i++){
+         
+         if(list.get(i) instanceof User){
+            User user = (User) list.get(i);
+            if(!user.role.toLowerCase().equals(user.roleRequest.toLowerCase())){
+               boolean exitWhile = false;
+
+            System.out.println("Username: " + user.userName + " current role: " + user.role + " requested role: " + user.roleRequest);
+            System.out.println("1. Accept  2. Decline  3. Exit");
+           
+
+            while(exitWhile == false){
+               String decision = scanner.nextLine();
+            switch(decision) 
+            {   
+                case "1": 
+                User userWithNewRole = (User) list.get(i);
+                userWithNewRole.role = userWithNewRole.roleRequest;
+                list.set(i, userWithNewRole);
+                exitWhile = true;
+                break;
+                case "2": 
+                User userWithSameRole = (User) list.get(i);
+                userWithSameRole.roleRequest = userWithSameRole.role;
+                list.set(i, userWithSameRole);
+                exitWhile = true;
+                break;
+                case "3":
+                exit = true;
+                exitWhile = true;
+                break;
+               }
+         }
+         if(exit){
+            break;
+         }
+      }
+      
+      }
+      
+      
+   }
+      App.setList(list);
       return "";
    }
    public String changeUserSalary(User user){

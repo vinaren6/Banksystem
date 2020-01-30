@@ -37,12 +37,22 @@ public class UserMenu {
                 System.out.println("You can only write numbers");
                }
             }
+                if(user.viewSalary() != intNewSalary){
                 user.createRequestSalary(intNewSalary); 
+                }
+                else{
+                    System.out.println("you alredy have this salary");
+                }
                 break; 
             case "4": 
                 System.out.println("Write your requested role. your current role are " + user.viewRole());
                 String newRole = scanner.nextLine();
+                if(!user.viewRole().equals(newRole)){
                 user.createRequestRole(newRole);
+                }
+                else{
+                    System.out.println("you alredy have this role");
+                }
                 break; 
             case "5": 
                 System.out.println(user.removeUser(user)); 
