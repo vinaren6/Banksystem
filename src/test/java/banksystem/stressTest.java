@@ -17,12 +17,21 @@ public class stressTest
      * Rigorous Test :-)
      */
     @Test
-    public void loginStressTest()
+    public void createUserStressTest()
     {
         Admin admin = makeAdmin();
         makeUser(admin);
-     
+        loginStressTest();
 
+    }
+
+    
+    public void loginStressTest(){
+        for(int i = 0; i <= 50000; i++){
+        int listPosition = App.loginGetListPosition("user1" + i, "abc123");
+        Account account = App.loginGetAccountFromList(listPosition);
+        System.out.println(i);
+        }
     }
 
     private Admin makeAdmin(){
@@ -33,8 +42,8 @@ public class stressTest
         return admin;
     }
     private void makeUser(Admin admin){
-        for(int i = 0; i <= 1000000; i++){
-            admin.createUser("firstName", "lastName", "role", "abc123", "user1" + i , "email", 100, 150);
+        for(int i = 0; i <= 50000; i++){
+            admin.createUser("user1" + i , "abc123", "email", "role", "firstName", "lastName", 100, 150);
         }
     }
     

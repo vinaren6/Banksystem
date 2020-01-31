@@ -49,7 +49,8 @@ public class User extends Account{
 
      return role;
    }
-   public String removeUser(User user){
+   public boolean removeUser(User user, String username, String password){
+     if(user.checkUserName().equals(username) && user.checkPassword().equals(password)){
      ArrayList<Account> list =  App.getList();
     for(int i = 0; i < list.size(); i++){
       if(list.get(i).equals(user)){
@@ -58,10 +59,12 @@ public class User extends Account{
       }
     }
     App.setList(list);
-     return "123";
+     return true;
+  }
+  return false;
    }
-   public int viewAccountBalance(User user) {
+   public long viewAccountBalance() {
 
-     return 0;
+     return money;
    }
 }

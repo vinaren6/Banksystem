@@ -19,7 +19,6 @@ public class IntegrationTest
         makeAdmin();
         Admin admin = (Admin) loginTest("admin1", "admin1234");
         admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
-        System.out.println("hello");
 
 
         User user = (User) loginTest("test", "abc123");

@@ -22,7 +22,7 @@ public class Admin extends Account{
       this.email = email;
    }
 
-   public String seeUser(){
+   public void seeUser(){
       ArrayList<Account> list =  App.getList();
       for(int i = 0; i < list.size(); i++){
          if(list.get(i) instanceof User){
@@ -31,25 +31,23 @@ public class Admin extends Account{
          }
        }
       
-      return "";
    }
 
-   public String removeUser(String userName){
+   public void removeUser(String userName, String password){
       ArrayList<Account> list =  App.getList();
       for(int i = 0; i < list.size(); i++){
          if(list.get(i) instanceof User){
             User user = (User) list.get(i);
-            if(user.userName.equals(userName)){
+            if(user.userName.equals(userName) && user.password.equals(password)){
                list.remove(i);
                break;
             }
          }
       }
       App.setList(list);
-      return "";
    }
 
-   public String seeUserRequestSalary(){
+   public void seeUserRequestSalary(){
       ArrayList<Account> list =  App.getList();
      
 
@@ -96,9 +94,8 @@ public class Admin extends Account{
       App.setList(list);
       
    }
-   return "";
 }
-   public String changeUserRole(){
+   public void changeUserRole(){
       ArrayList<Account> list =  App.getList();
      
 
@@ -147,18 +144,15 @@ public class Admin extends Account{
       
    }
       App.setList(list);
-      return "";
+      
    }
-   public String changeUserSalary(User user){
-
-      return "";
-   }
-   public String createUser(String userName, String password, String email, String role, String firstName, String lastName, int salary, int money){
+   
+   public void createUser(String userName, String password, String email, String role, String firstName, String lastName, int salary, int money){
       ArrayList<Account> list =  App.getList();
       User user = new User(userName, password, email, role, firstName, lastName, salary, money);
       list.add(user);
       App.setList(list);
-      return "";
+      
    }
    public void plannedSalary(){
       ArrayList<Account> list =  App.getList();
@@ -176,10 +170,5 @@ public class Admin extends Account{
       App.setList(list2);
    }
 
-    // Getters and setters
-  
-
-//   public void setMyCalander(String[][] myCalander) {
-//       this.myCalander = myCalander;
-//   }
+    
 }

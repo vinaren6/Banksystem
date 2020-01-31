@@ -7,13 +7,13 @@ import banksystem.users.Admin;
 
 public class AdminMenu { 
     private Scanner scanner = new Scanner(System.in);
-
+    private UserMenu userMenu = new UserMenu();
     public void menu(Admin admin) {
         Boolean logout = false;
               
         while (logout == false) {
             System.out.println("1. see users  2. Make user  3. Pay salary  4. Delete user  5. Salary request  6. Role request  0. Logout");
-			String menuChoise = scanner.nextLine();
+			String menuChoise = userMenu.stringLongerthenOne();
 
             switch(menuChoise) 
         {   
@@ -22,13 +22,13 @@ public class AdminMenu {
                 break; 
             case "2": 
             System.out.println("first name");
-            String firstName = scanner.nextLine();
+            String firstName = userMenu.stringLongerthenOne();
             System.out.println("last name");
-            String lastName = scanner.nextLine();           
+            String lastName = userMenu.stringLongerthenOne();         
             System.out.println("role");
-            String role = scanner.nextLine();
+            String role = userMenu.stringLongerthenOne();
             System.out.println("username");
-            String userName = scanner.nextLine();
+            String userName = userMenu.stringLongerthenOne();
             boolean passwordLetter = false;
             boolean passwordNumber = false;
             String password = "";
@@ -48,10 +48,9 @@ public class AdminMenu {
             }
 
             }
-
             
             System.out.println("email");
-            String email = scanner.nextLine();
+            String email = userMenu.stringLongerthenOne();
             boolean parseIntSalary = false;
             int salary = 0;
             while (!parseIntSalary){
@@ -85,8 +84,11 @@ public class AdminMenu {
 
             case "4":
                 System.out.println("Which user do you want to delete");
-                String removeUserName = scanner.nextLine();
-                admin.removeUser(removeUserName);
+                String removeUserName = userMenu.stringLongerthenOne();
+                System.out.println("Password");
+                String removePassword = userMenu.stringLongerthenOne();
+
+                admin.removeUser(removeUserName, removePassword);
                 break;
             case "5":
                 

@@ -23,19 +23,23 @@ public class SmokeTest
     @Test
     public void loginTest()
     {
-        makeAdmin();
-        int listPosition = App.loginGetListPosition("admin1", "admin1234");
-        Account account = App.loginGetAccountFromList(listPosition);
-        assertTrue( account instanceof Admin);
+        Admin admin = makeAdmin();
+        admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
+        int listPositionAdmin = App.loginGetListPosition("admin1", "admin1234");
+        Account accountAdmin = App.loginGetAccountFromList(listPositionAdmin);
+        int listPositionUser = App.loginGetListPosition("test", "abc123");
+        Account accountUser = App.loginGetAccountFromList(listPositionUser);
+        assertTrue( accountAdmin instanceof Admin);
+        assertTrue( accountUser instanceof User);
         clearList();
     }
     @Test
     public void makeUser(){
        Admin admin = makeAdmin();
-       admin.createUser("viktor", "ruden", "worker", "abc123", "viktor", "email", 120, 1000);
+       admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
        ArrayList<Account> list = App.getList();
        User user = (User) list.get(1);
-       assertEquals(120, user.viewSalary());
+       assertEquals(150, user.viewSalary());
        clearList();
     }
 

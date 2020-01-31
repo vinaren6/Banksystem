@@ -13,8 +13,8 @@ public class UserMenu {
         Boolean logout = false;
        
         while (logout == false) {
-            System.out.println("1. Salary  2. Role  3. Request new salary  4. Request new role  5. Remove  0. Logout");
-			String menuChoise = scanner.nextLine();
+            System.out.println("1. Salary  2. Role  3. Request new salary  4. Request new role  5. Remove  6. Saldo  0. Logout");
+			String menuChoise = stringLongerthenOne();
 
             switch(menuChoise) 
         {   
@@ -46,7 +46,7 @@ public class UserMenu {
                 break; 
             case "4": 
                 System.out.println("Write your requested role. your current role are " + user.viewRole());
-                String newRole = scanner.nextLine();
+                String newRole = stringLongerthenOne();
                 if(!user.viewRole().equals(newRole)){
                 user.createRequestRole(newRole);
                 }
@@ -55,9 +55,21 @@ public class UserMenu {
                 }
                 break; 
             case "5": 
-                System.out.println(user.removeUser(user)); 
+                System.out.println("Usernmae");
+                String removeUsername = stringLongerthenOne();
+                System.out.println("Password");
+                String removePassword = stringLongerthenOne();
+                if(user.removeUser(user , removeUsername, removePassword)){ 
                 logout = true;
+                }
+                else{
+                    System.out.println("Wrong username or password");
+                }
                 break; 
+                case "6": 
+                System.out.println(user.viewAccountBalance()); 
+                
+                break;     
             case "0":
                 logout = true;
                 break;
@@ -67,5 +79,15 @@ public class UserMenu {
         }
 
         }
-    
+    public String stringLongerthenOne(){
+        boolean exit = false;
+        String str = "";
+        while(exit == false){
+            str = scanner.nextLine();
+            if(str.length() > 0){
+                exit = true;
+            }
+        }
+        return str;
+    }
 }
