@@ -12,51 +12,42 @@ import banksystem.users.Admin;
 import banksystem.users.User;
 
 
-/**
- * Unit test for simple App.
- */
-public class SmokeTest 
-{
-    /**
-     * Rigorous Test :-)
-     */
+public class SmokeTest {
+    private Login classLogin = new Login();
+
+    //Test for loggin in to a admin and a user
     @Test
-    public void loginTest()
-    {
+    public void loginTest() {
         Admin admin = makeAdmin();
         admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
-        int listPositionAdmin = App.loginGetListPosition("admin1", "admin1234");
-        Account accountAdmin = App.loginGetAccountFromList(listPositionAdmin);
-        int listPositionUser = App.loginGetListPosition("test", "abc123");
-        Account accountUser = App.loginGetAccountFromList(listPositionUser);
-        assertTrue( accountAdmin instanceof Admin);
-        assertTrue( accountUser instanceof User);
+        int listPositionAdmin = classLogin.loginGetListPosition("admin1", "admin1234");
+        Account accountAdmin = classLogin.loginGetAccountFromList(listPositionAdmin);
+        int listPositionUser = classLogin.loginGetListPosition("test", "abc123");
+        Account accountUser = classLogin.loginGetAccountFromList(listPositionUser);
+        assertTrue(accountAdmin instanceof Admin);
+        assertTrue(accountUser instanceof User);
         clearList();
     }
+    //Test for making a user
     @Test
-    public void makeUser(){
-       Admin admin = makeAdmin();
-       admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
-       ArrayList<Account> list = App.getList();
-       User user = (User) list.get(1);
-       assertEquals(150, user.viewSalary());
-       clearList();
+    public void makeUser() {
+        Admin admin = makeAdmin();
+        admin.createUser("test", "abc123", "test", "test", "test", "test", 150, 1200);
+        ArrayList<Account> list = App.getList();
+        User user = (User) list.get(1);
+        assertEquals(150, user.viewSalary());
+        clearList();
     }
-
-
-
-
-
-
-
-    public Admin makeAdmin(){
+    //Makes a admin and adds it to the arraylist
+    public Admin makeAdmin() {
         ArrayList<Account> list = new ArrayList<Account>();
         Admin admin = new Admin("admin1", "admin1234", "admin@admin.admin", "Admin");
         list.add(admin);
         App.setList(list);
         return admin;
     }
-    public void clearList(){
+    //Clears the Arraylist
+    public void clearList() {
         ArrayList<Account> list = new ArrayList<Account>();
         App.setList(list);
     }
